@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  create-S3-bucket:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Upload to S3
+
+        run: |
+          aws s3 mb s3://unit-test-2070
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
