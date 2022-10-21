@@ -35,7 +35,7 @@ jobs:
           destination_dir: 'input_data'
 
   run-unit-test:
-    needs: create-S3-bucket
+    needs: upload-input-data-to-s3
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v3
