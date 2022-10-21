@@ -5,8 +5,8 @@ from import_data import import_data
 class TestSum(unittest.TestCase):
     def test_column_num(self):
         """
-         Tests presence column names in input data csv file
-         """
+        Tests presence column names in input data csv file
+        """
         result = import_data()
         self.assertIn('city', result[0])
         self.assertIn('region', result[0])
@@ -20,15 +20,6 @@ class TestSum(unittest.TestCase):
         """
         Tests number of columns
         """
-        desired_names = [
-            'city',
-            'region',
-            'country',
-            'country_code',
-            'latitude',
-            'longitude',
-            'timezone'
-        ]
         result = len(import_data()[0])
         self.assertEqual(result, 7)
 
