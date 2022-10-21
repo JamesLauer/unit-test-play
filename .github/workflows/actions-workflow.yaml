@@ -2,6 +2,10 @@ on:
   push:
     branches:
       - main
+
+env:
+  s3bucketname: s3bucketname
+
 jobs:
   create-S3-bucket:
     runs-on: ubuntu-latest
@@ -10,8 +14,22 @@ jobs:
       - name: Upload to S3
 
         run: |
-          aws s3 mb s3://unit-test-2070
+          aws s3 mb s3://$s3bucketname
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
+  upload-input-data-to-s3:
+    needs: create-S3-bucket
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          # Enter same S3 bucket name as in template.yml
+          aws_bucket: $s3bucketname
+          source_dir: 'data'
+          destination_dir: 'input_data'
