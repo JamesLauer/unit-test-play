@@ -5,7 +5,7 @@ path = pathlib.Path().parent.absolute()
 
 
 def import_data():
-    with open(fr'{path}\data\AUNZ_cities_test.csv', newline='') as f:
+    with open(f'{path}/data/AUNZ_cities_test.csv', newline='') as f:
         imported_data = list(csv.reader(f))
         return imported_data
 
