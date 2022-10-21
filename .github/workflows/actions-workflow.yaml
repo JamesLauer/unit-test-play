@@ -35,6 +35,7 @@ jobs:
           destination_dir: 'input_data'
 
   run-unit-test:
+    needs: create-S3-bucket
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v3
@@ -48,3 +49,5 @@ jobs:
         # You can test your matrix by printing the current Python version
         - name: Display Python version
           run: python -c "import sys; print(sys.version)"
+        - name: Run unit test
+          run: tests/unit/test_input_data.py
