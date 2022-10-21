@@ -4,7 +4,7 @@ on:
       - main
 
 env:
-  s3bucketname: s3bucketname
+  s3bucketname: lambda-unit-test-3053
 
 jobs:
   create-S3-bucket:
