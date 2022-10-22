@@ -8,7 +8,7 @@ class TestSum(unittest.TestCase):
         Tests presence column names in input data csv file
         """
         result = import_data()
-        self.assertIn('cities', result[0]) # should be 'city'
+        self.assertIn('city', result[0])
         self.assertIn('region', result[0])
         self.assertIn('country', result[0])
         self.assertIn('country_code', result[0])
